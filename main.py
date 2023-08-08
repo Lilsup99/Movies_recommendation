@@ -6,7 +6,7 @@ import pandas as pd
 from fastapi import FastAPI
 
 
-data = pd.read_csv('movies_dataset_clean.csv')
+data = pd.read_csv('movies_dataset_clean1_1.csv')
 
 app = FastAPI()
 
