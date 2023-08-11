@@ -3,10 +3,16 @@ python -m uvicorn main:app --reload
 '''
 
 import pandas as pd
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 from fastapi import FastAPI
 
 
+
+
 data = pd.read_csv('movies_dataset_clean1_1.csv')
+
 
 app = FastAPI()
 
@@ -104,11 +110,7 @@ async def get_director(nombre_director: str):
     
     v['peliculas'] = movies    
     return v
-'''
- return {'director':nombre_director, 'retorno_total_director':respuesta, 
-    'peliculas':respuesta, 'anio':respuesta,, 'retorno_pelicula':respuesta, 
-    'budget_pelicula':respuesta, 'revenue_pelicula':respuesta}
-'''
+
 
 
 '''
@@ -118,3 +120,22 @@ def recomendacion(titulo:str):
     Ingresas un nombre de pelicula y te recomienda las similares en una lista
     return {'lista recomendada': respuesta}
 '''
+df_movies = data.loc[:2600]
+df_movies['overview'] = df_movies['overview'].fillna('')
+#instancia de td-idf vector
+tfidf_vectorizer = TfidfVectorizer(min_df=5 ,max_df=0.7,token_pattern= r'\b[a-zA-Z]\w+\b' ,stop_words='english')
+tfidf_vector_genres = tfidf_vectorizer.fit_transform(df_movies['Genres'])
+
+tfidf_df_genres = pd.DataFrame(tfidf_vector_genres.toarray())
+tfidf_df_genres = tfidf_df_genres.astype('float16')
+#matriz de similaridad
+cosine_sim_genres = cosine_similarity(tfidf_df_genres.values)
+cosine_sim_genres = cosine_sim_genres.tolist()
+@app.get('/recomendacion/{titulo}')
+async def recomendacion(titulo:str, cosine_sim=cosine_sim_genres):
+    idx = data.index[data['title'] == titulo].tolist()[0]
+    sim_scores = enumerate(cosine_sim[idx])
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+    sim_scores = sim_scores[1:6]
+    movie_indices = [i[0] for i in sim_scores] 
+    return {'lista recomendada' : list(data['title'].iloc[movie_indices])}
