@@ -120,9 +120,9 @@ def recomendacion(titulo:str):
 '''
 rs_data = np.array(rs_data).tolist()
 @app.get('/recomendacion/{titulo}')
-async def recomendacion(titulo:str, cosine_sim=rs_data):
+async def recomendacion(titulo:str):
     idx = data.index[data['title'] == titulo].tolist()[0]
-    sim_scores = enumerate(cosine_sim[idx])
+    sim_scores = enumerate(rs_data[idx])
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     sim_scores = sim_scores[1:6]
     movie_indices = [i[0] for i in sim_scores] 
