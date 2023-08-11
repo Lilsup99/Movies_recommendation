@@ -59,3 +59,7 @@ calcular (si los recursos lo permiten) para mas registros de peliculas y asi obt
 * Fastapi
 * render para el deploy
 * scikit_learn, especificamente los modulos TdidfVectorizer y cosine_similarity
+
+  ### Enlaces
+  link deploy de la *API*: https://movies-rs.onrender.com/docs
+  link de video explicativo de la *API*: https://drive.google.com/file/d/1vn4senVqVBb1C1TP4EXJtnetSJLfl_BO/view?usp=sharing
