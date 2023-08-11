@@ -118,12 +118,12 @@ def recomendacion(titulo:str):
     Ingresas un nombre de pelicula y te recomienda las similares en una lista
     return {'lista recomendada': respuesta}
 '''
-rs_data = np.array(rs_data.tol).tolist()
-@app.get('/recomendacion/{titulo}')
-async def recomendacion(titulo:str, cosine_sim=rs_data):
-    idx = data.index[data['title'] == titulo].tolist()[0]
-    sim_scores = enumerate(cosine_sim[idx])
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:6]
-    movie_indices = [i[0] for i in sim_scores] 
-    return {'lista recomendada' : list(data['title'].iloc[movie_indices])}
+#rs_data = np.array(rs_data.tol).tolist()
+#@app.get('/recomendacion/{titulo}')
+#async def recomendacion(titulo:str, cosine_sim=rs_data):
+#    idx = data.index[data['title'] == titulo].tolist()[0]
+#    sim_scores = enumerate(cosine_sim[idx])
+#    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+#    sim_scores = sim_scores[1:6]
+#    movie_indices = [i[0] for i in sim_scores] 
+#    return {'lista recomendada' : list(data['title'].iloc[movie_indices])}
