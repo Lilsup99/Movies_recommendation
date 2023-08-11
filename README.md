@@ -47,7 +47,9 @@ con la informacion de las palabras mas relevantes, i.e, las que ofrecen una mejo
 Posteriormente ya calculados estos arrays de vectores se procede a calcular la matriz de similitud que relaciona
 todas las peliculas, a partir de esta matriz se puede obtener la recomendacion de una pelicula buscando su indice
 correspondiente y ordenando dicha fila de la matriz de similitud. ademas se incorporo en la *API* la funcion de recomendacion
-donde se le da de entrada una pelicula y esta retorna las 5 peliculas recomendadas para dicha pelicula de entrada
+donde se le da de entrada una pelicula y esta retorna las 5 peliculas recomendadas para dicha pelicula de entrada. Recomendacion
+la hace gracias a la matriz de similitud `movie_simil_genres.csv`, que se encuentra en este repositorio. Esta matriz se puede
+calcular (si los recursos lo permiten) para mas registros de peliculas y asi obtener una mejor recomendacion
 
 ### Herramientas utilizadas para la elaboracion del proyecto
 
