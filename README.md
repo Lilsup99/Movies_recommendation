@@ -1,6 +1,7 @@
 # Movies_recommendation 🎦
 ## Sistema de recomendacion basado en contenido
 Proyecto Individual MLops: 🧮 Daniel Vielma DTPT02
+https://www.linkedin.com/in/daniel-vielma-10bb42269/
 
 El desarrollo de este proyecto tiene como finalidad la construccion de un modelo de recomendacion basado en 
 contenido, disponiendo de los datasets `movies_dataset.csv` y `credits.csv`, Ademas de esto, se incorpora la 
